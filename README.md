@@ -1,4 +1,4 @@
-# meteorological-data-visualization
+
 This repository contains a collection of Python scripts for plotting meteorological data, including temperature, wind, and precipitation. These visualizations were created for analysis, reporting, and teaching purposes.
 
 ## 📊 Visualizations included
