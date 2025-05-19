@@ -10,7 +10,7 @@
 #https://jswhit.github.io/pygrib/docs/--- GRIB files
 #-------------------------------------------------------------------------
 
-#Instalar o Pyproj
+# Pyproj
 !pip install -q pyproj==2.3.0
 
 #Install Basemap 
