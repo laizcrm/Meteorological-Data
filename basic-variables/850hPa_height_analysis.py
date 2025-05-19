@@ -84,7 +84,7 @@ print(file)
 # timestamps every 6 hours between July 13 and July 15, 2016
 date = list(pd.date_range('2016-07-13T00:00:00.00','2016-07-15T00:00:00.00', freq='6H').strftime('%Y-%m-%d %H'))
 
-
+# Define map extent (west_lon, east_lon, south_lat, north_lat)
 extent = [-95.0,-60.0,-20.0,10.0]
 min_lon = extent[0]; max_lon = extent[2]; min_lat = extent[1]; max_lat = extent[3]
 
