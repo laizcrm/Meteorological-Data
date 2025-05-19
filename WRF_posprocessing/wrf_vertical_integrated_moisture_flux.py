@@ -14,11 +14,11 @@ from siphon.ncss import NCSS
 from scipy.ndimage.filters import gaussian_filter
 import scipy.integrate as integrate
 
-# Numpy
+
 import numpy as np
 from numpy import linspace, meshgrid
 
-# Matplotlib
+
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
@@ -161,12 +161,10 @@ for file_path in selected_files:
 
     ax.quiverkey(q, 0.80, 0.12, 100, '100 g m$^{-2}$ s$^{-1}$', labelpos='E', coordinates='figure')
 
-    # Add titles
     plt.title('Vertically Integrated Moisture Flux between 900-700 hPa', fontsize=16, y=1.05)
     plt.title(f'WRF Output Time: {pd.to_datetime(str(time_var.values))} UTC', fontsize=9, loc='right')
     plt.title('WRF - 9 km resolution', fontsize=12, loc='left')
 
-    # Save figure
     output_dir = './850hpa/'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
