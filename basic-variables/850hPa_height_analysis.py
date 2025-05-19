@@ -41,14 +41,7 @@ print('\n')
 !unzip -o ne_10m_admin_1_states_provinces.zip
 print('\n')
 
-#-------------------- STANDARD LIBRARIES --------------------
-import os
-import glob
-import numpy as np
-import pandas as pd
-import datetime as dt
-from datetime import datetime
-
+#-------------------- LIBRARIES --------------------
 # Core libraries
 import os
 import glob
@@ -79,7 +72,7 @@ from siphon.ncss import NCSS
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import cartopy.io.shapereader as shpreader
-from osgeo import gdal
+#from osgeo import gdal
 
 
 # Load the NetCDF file containing 850 hPa atmospheric data 
