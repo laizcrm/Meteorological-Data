@@ -38,29 +38,28 @@ accum_rain = precip_vars["RAINC"] + precip_vars["RAINNC"]
 # Get latitude and longitude arrays
 lats, lons = latlon_coords(accum_rain)
 
-# Define map extent: [min_lon, max_lon, min_lat, max_lat]
-extent = [-80, -41, -38, -6]
+extent = [-80, -41, -38, -6]#(west_lon, east_lon, south_lat, north_lat)
 
 # Grid interval for longitude and latitude gridlines
 grid_interval = 5
 min_lon, max_lon, min_lat, max_lat = extent[0], extent[1], extent[2], extent[3]
 
-# Create figure and axis with PlateCarree projection
+#----------------Figure---------------------------------------
+
 fig = plt.figure(figsize=(10, 10))
 ax = plt.axes(projection=ccrs.PlateCarree())
 
-# Set plot extent
+
 ax.set_extent(extent, crs=ccrs.PlateCarree())
 
-# Add state boundaries from shapefile
+
 shapefile = list(shpreader.Reader('shapefile/ne_10m_admin_1_states_provinces.shp').geometries())
 ax.add_geometries(shapefile, ccrs.PlateCarree(), edgecolor='gray', facecolor='none', linewidth=0.3)
 
-# Add coastlines and country borders
+
 ax.coastlines(resolution='10m', color='black', linewidth=0.8)
 ax.add_feature(cfeature.BORDERS, edgecolor='black', linewidth=0.5)
 
-# Add gridlines with labels only on left and bottom
 gl = ax.gridlines(crs=ccrs.PlateCarree(), color='gray', linestyle='--', linewidth=0.25,
                   xlocs=np.arange(min_lon, max_lon, grid_interval),
                   ylocs=np.arange(min_lat, max_lat, grid_interval),
@@ -77,17 +76,14 @@ cmap.set_over('#294f47')
 cmap.set_under('#533e27')
 norm = matplotlib.colors.BoundaryNorm(levels, cmap.N)
 
-# Plot accumulated precipitation
 cs = plt.contourf(to_np(lons), to_np(lats), accum_rain, levels=levels, norm=norm, cmap=cmap, extend='max')
 
-# Add colorbar with label
+
 cbar = plt.colorbar(cs, ticks=levels, format="%.0f", pad=0.01, fraction=0.04)
 cbar.set_label('Precipitation (mm)', fontsize=14)
 
-# Add titles
 plt.title('Accumulated Precipitation', fontsize=16, loc='center', y=1.05)
 plt.title('WRF - 9 km Resolution', fontsize=12, loc='left')
 plt.title(f'{pd.to_datetime(str(times.values)).strftime("%Y-%m-%d %H UTC")}', fontsize=9, loc='right')
 
-# Save the figure
 plt.savefig(f'./accumulated_precipitation/{pd.to_datetime(str(times.values)).strftime("%Y%m%d%H")}_rain9km.png', dpi=300)
