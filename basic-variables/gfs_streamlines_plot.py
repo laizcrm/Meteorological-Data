@@ -32,7 +32,8 @@ v= grib.select(name='V component of wind', typeOfLevel = 'isobaricInhPa', level 
 
 
 # Extract the mslvalues from the NetCDF 
-extent = [-85.0,-60.0,-20.0,10.0] #[min_lon,min_lat,max_lon,max_lat]
+extent = [-85.0,-60.0,-20.0,10.0] #(west_lon, east_lon, south_lat, north_lat)
+
 
 min_lon = extent[0]; max_lon = extent[2]; min_lat = extent[1]; max_lat = extent[3]
 
