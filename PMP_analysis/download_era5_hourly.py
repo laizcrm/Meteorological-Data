@@ -9,19 +9,19 @@ import cdsapi
 import os
 import calendar
 
-def download_climatology_data(year, month):
+def download_climatology_data(year, month, base_path="data"):
     """
     Downloads hourly ERA5-Land reanalysis data (temperature, wind, and precipitation)
     for a given year and month from the Copernicus Climate Data Store (CDS),
     and saves them in a structured folder format.
-    
+
     Parameters:
-    - year (int): The year of the data to be downloaded.
-    - month (int): The month of the data to be downloaded.
+    - year (int): Year of the data to be downloaded.
+    - month (int): Month of the data to be downloaded.
+    - base_path (str): Root directory where data will be saved.
     """
     
-    # Define base directory to save the data
-    base_dir = f"/home/fieldpro/Climatology/data/{year}/{month:02d}"
+    base_dir = os.path.join(base_path, str(year), f"{month:02d}")
     os.makedirs(base_dir, exist_ok=True)
 
     # Get number of days in the month
@@ -44,18 +44,18 @@ def download_climatology_data(year, month):
                     "total_precipitation"
                 ],
                 "year": str(year),
-                "month": str(month).zfill(2),
-                "day": [str(day).zfill(2)],
+                "month": f"{month:02d}",
+                "day": [f"{day:02d}"],
                 "time": [time],
                 "data_format": "grib",
                 "download_format": "unarchived",
                 # Define region of interest: [North, West, South, East]
-                "area": [12, -80, -40, -20],  
+                "area": [12, -80, -40, -20],
                 "format": "grib"
             }
 
             # Define output file name and path
-            file_name = f"{year}_{month:02d}_{str(day).zfill(2)}_{time.replace(':', '')}.grib"
+            file_name = f"{year}_{month:02d}_{day:02d}_{time.replace(':', '')}.grib"
             file_path = os.path.join(day_dir, file_name)
 
             # Skip if file already exists
@@ -67,7 +67,7 @@ def download_climatology_data(year, month):
                 client.retrieve("reanalysis-era5-land", request, file_path)
                 print(f"Downloaded: {file_name}")
 
-# Download data from 2020 to 2021
-for year in range(2020, 2022):  
-    for month in range(1, 13):  
-        download_climatology_data(year, month)
+# Download data from 2020 to 2021 into the default 'data/' directory
+for year in range(2020, 2022):
+    for month in range(1, 13):
+        download_climatology_data(year, month, base_path="climatology_data")
