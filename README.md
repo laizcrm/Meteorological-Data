@@ -16,5 +16,5 @@ This repository contains a collection of Python scripts for plotting meteorologi
 ## 🔧 How to use
 1. Clone this repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/meteorological-data-visualization.git
-   cd meteorological-data-visualization
+   git clone https://github.com/YOUR_USERNAME/Meteorological-Data.git
+   cd Meteorological-Data
