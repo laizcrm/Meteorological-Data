@@ -1,5 +1,14 @@
-#Script para guia: #https://unidata.github.io/python-gallery/examples/mapping_GOES16_TrueColor.html
+"""
+This script processes GOES-16 satellite data to generate a false color composite image
+combining visible and infrared channels over the CONUS domain.
 
+It reads multiple netCDF files corresponding to different spectral bands,
+extracts reflectance and brightness temperature data, and applies
+contrast enhancement and a false color look-up table (LUT) for visualization.
+
+The script also computes geolocation coordinates (latitude and longitude)
+from satellite projection data to enable mapping and spatial analysis.
+"""
 #import matplotlib
 #matplotlib.use('agg')
 import matplotlib.pyplot as plt
@@ -355,16 +364,14 @@ plt.pcolormesh(lons_n, lats_n, r, color=color_tuples, zorder=1)
 
 print("Third layer...")
 # FIFTH LAYER
-# Show the image
 ax.imshow(final_image_alpha, origin='upper', zorder=2)
 
 
 
 
 print("Saving Image...")
-# Save the image
 
-plt.savefig('plot10107.png', dpi=DPI, facecolor="black", pad_inches=0)
+plt.savefig('geocolor.png', dpi=DPI, facecolor="black", pad_inches=0)
 
 
 print ('- finished! ') 
