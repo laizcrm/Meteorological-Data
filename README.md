@@ -12,6 +12,7 @@ This repository contains a collection of Python scripts for plotting meteorologi
 - Matplotlib
 - Pandas
 - Numpy
+- Gdal
 
 ## 🔧 How to use
 1. Clone this repository:
